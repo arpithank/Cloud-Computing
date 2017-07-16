@@ -1,0 +1,98 @@
+cc@cc-VirtualBox:~/Documents/hadoop-2.6.0$ hadoop jar harp-tutorial-app-1.0-SNAPSHOT.jar edu.iu.kmeans.common.KmeansMapCollective 5000000 20 2 100 2 10 /kmeans /tmp/kmeans allreduce
+Number of Map Tasks = 2
+Len : 9
+Args=:
+5000000;20;2;100;2;10;/kmeans;/tmp/kmeans;allreduce;
+Generate data.
+Writing 5000000 vectors to 2 file evenly
+Directory: /tmp/kmeans created
+Done written2500000pointsto file 0
+Done written2500000pointsto file 1
+Generate centroid data./kmeans/centroids/centroids_0
+Wrote centroids data to file
+Starting Job
+Start Job#0 17:16:38.965
+Centroid File Path: /kmeans/centroids/centroids_0
+| Job#0 configure in 149 miliseconds |
+Get map collective runner
+17/04/23 17:16:40 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+17/04/23 17:16:47 INFO input.FileInputFormat: Total input paths to process : 2
+17/04/23 17:16:47 INFO fileformat.MultiFileInputFormat: NUMBER OF FILES: 2
+17/04/23 17:16:47 INFO fileformat.MultiFileInputFormat: NUMBER OF MAPS: 2
+17/04/23 17:16:47 INFO fileformat.MultiFileInputFormat: Split on host: cc-VirtualBox 
+17/04/23 17:16:47 INFO fileformat.MultiFileInputFormat: Split on host: cc-VirtualBox 
+17/04/23 17:16:47 INFO fileformat.MultiFileInputFormat: Total # of splits: 2
+17/04/23 17:16:48 INFO mapreduce.JobSubmitter: number of splits:2
+17/04/23 17:16:49 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1491167082473_0007
+command: $JAVA_HOME/bin/java -Dlog4j.configuration=container-log4j.properties -Dyarn.app.container.log.dir=<LOG_DIR> -Dyarn.app.container.log.filesize=0 -Dhadoop.root.logger=INFO,CLA  -Xmx256m -Xms256m org.apache.hadoop.mapreduce.v2.app.MapCollectiveAppMaster 1><LOG_DIR>/stdout 2><LOG_DIR>/stderr 
+17/04/23 17:16:51 INFO impl.YarnClientImpl: Submitted application application_1491167082473_0007
+17/04/23 17:16:51 INFO mapreduce.Job: The url to track the job: http://cc-VirtualBox:8088/proxy/application_1491167082473_0007/
+17/04/23 17:16:51 INFO mapreduce.Job: Running job: job_1491167082473_0007
+17/04/23 17:17:32 INFO mapreduce.Job: Job job_1491167082473_0007 running in uber mode : false
+17/04/23 17:17:32 INFO mapreduce.Job:  map 0% reduce 0%
+17/04/23 17:18:16 INFO mapreduce.Job:  map 100% reduce 0%
+17/04/23 17:19:10 INFO mapreduce.Job: Job job_1491167082473_0007 completed successfully
+17/04/23 17:19:11 INFO mapreduce.Job: Counters: 30
+	File System Counters
+		FILE: Number of bytes read=0
+		FILE: Number of bytes written=212310
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=182692297
+		HDFS: Number of bytes written=754
+		HDFS: Number of read operations=17
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=4
+	Job Counters 
+		Launched map tasks=2
+		Other local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=359286
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=179643
+		Total vcore-seconds taken by all map tasks=179643
+		Total megabyte-seconds taken by all map tasks=183954432
+	Map-Reduce Framework
+		Map input records=2
+		Map output records=1
+		Input split bytes=172
+		Spilled Records=0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=17370
+		CPU time spent (ms)=23180
+		Physical memory (bytes) snapshot=664047616
+		Virtual memory (bytes) snapshot=3885719552
+		Total committed heap usage (bytes)=519045120
+	File Input Format Counters 
+		Bytes Read=0
+	File Output Format Counters 
+		Bytes Written=754
+end Jod#0 17:19:11.732
+| Job#0 Finished in 152783 miliseconds |
+Total MBKmeans Execution Time: 152783
+MBKmeans Completed
+
+cc@cc-VirtualBox:~/Documents/hadoop-2.6.0$ hdfs dfs -cat /kmeans/centroids/*
+
+0.18830069373720115 8.251169948652585
+5.306686110663467 0.8329491456471438
+6.932621971099487 0.35483732704178594
+2.2920312845134028 5.979843103252884
+8.316145569429658 8.455134467457286
+1.50560901935197 3.008061599456233
+6.986975260056853 5.906960234044173
+7.6417268525169115 5.231416729232043
+9.890499118530304 3.6998792909395273
+5.742572690415459 9.375255166459521
+8.113924454334555 3.0180836371816677
+5.373466592036618 9.49491505344388
+1.4500610236561329 4.595790932389261
+4.632257919130172 8.89460537360328
+4.084463497295529 1.8312720158874052
+0.9096777643472875 3.3429097778229733
+5.788568641916013 7.366847562755524
+8.452223187387876 3.0315099543223214
+3.7924647559540214 0.898826743961818
+3.7264094276874724 5.186613235481438
+

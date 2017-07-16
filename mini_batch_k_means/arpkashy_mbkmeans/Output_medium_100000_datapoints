@@ -1,0 +1,99 @@
+cc@cc-VirtualBox:~/Documents/hadoop-2.6.0$ hadoop jar harp-tutorial-app-1.0-SNAPSHOT.jar edu.iu.kmeans.common.KmeansMapCollective 100000 20 2 100 2 10 /kmeans /tmp/kmeans allreduce
+Number of Map Tasks = 2
+Len : 9
+Args=:
+100000;20;2;100;2;10;/kmeans;/tmp/kmeans;allreduce;
+Generate data.
+Writing 100000 vectors to 2 file evenly
+Directory: /tmp/kmeans created
+Done written50000pointsto file 0
+Done written50000pointsto file 1
+Generate centroid data./kmeans/centroids/centroids_0
+Wrote centroids data to file
+Starting Job
+Start Job#0 16:44:14.963
+Centroid File Path: /kmeans/centroids/centroids_0
+| Job#0 configure in 158 miliseconds |
+Get map collective runner
+17/04/23 16:44:15 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+17/04/23 16:44:20 INFO input.FileInputFormat: Total input paths to process : 2
+17/04/23 16:44:20 INFO fileformat.MultiFileInputFormat: NUMBER OF FILES: 2
+17/04/23 16:44:20 INFO fileformat.MultiFileInputFormat: NUMBER OF MAPS: 2
+17/04/23 16:44:20 INFO fileformat.MultiFileInputFormat: Split on host: cc-VirtualBox 
+17/04/23 16:44:20 INFO fileformat.MultiFileInputFormat: Split on host: cc-VirtualBox 
+17/04/23 16:44:20 INFO fileformat.MultiFileInputFormat: Total # of splits: 2
+17/04/23 16:44:21 INFO mapreduce.JobSubmitter: number of splits:2
+17/04/23 16:44:22 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1491167082473_0005
+command: $JAVA_HOME/bin/java -Dlog4j.configuration=container-log4j.properties -Dyarn.app.container.log.dir=<LOG_DIR> -Dyarn.app.container.log.filesize=0 -Dhadoop.root.logger=INFO,CLA  -Xmx256m -Xms256m org.apache.hadoop.mapreduce.v2.app.MapCollectiveAppMaster 1><LOG_DIR>/stdout 2><LOG_DIR>/stderr 
+17/04/23 16:44:24 INFO impl.YarnClientImpl: Submitted application application_1491167082473_0005
+17/04/23 16:44:24 INFO mapreduce.Job: The url to track the job: http://cc-VirtualBox:8088/proxy/application_1491167082473_0005/
+17/04/23 16:44:24 INFO mapreduce.Job: Running job: job_1491167082473_0005
+17/04/23 16:45:03 INFO mapreduce.Job: Job job_1491167082473_0005 running in uber mode : false
+17/04/23 16:45:03 INFO mapreduce.Job:  map 0% reduce 0%
+17/04/23 16:45:50 INFO mapreduce.Job:  map 50% reduce 0%
+17/04/23 16:45:51 INFO mapreduce.Job:  map 100% reduce 0%
+17/04/23 16:45:55 INFO mapreduce.Job: Job job_1491167082473_0005 completed successfully
+17/04/23 16:45:56 INFO mapreduce.Job: Counters: 30
+	File System Counters
+		FILE: Number of bytes read=0
+		FILE: Number of bytes written=212310
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=3654990
+		HDFS: Number of bytes written=749
+		HDFS: Number of read operations=17
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=4
+	Job Counters 
+		Launched map tasks=2
+		Other local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=174604
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=87302
+		Total vcore-seconds taken by all map tasks=87302
+		Total megabyte-seconds taken by all map tasks=89397248
+	Map-Reduce Framework
+		Map input records=2
+		Map output records=1
+		Input split bytes=172
+		Spilled Records=0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=1223
+		CPU time spent (ms)=3970
+		Physical memory (bytes) snapshot=359624704
+		Virtual memory (bytes) snapshot=3885719552
+		Total committed heap usage (bytes)=519045120
+	File Input Format Counters 
+		Bytes Read=0
+	File Output Format Counters 
+		Bytes Written=749
+end Jod#0 16:45:56.384
+| Job#0 Finished in 101430 miliseconds |
+Total MBKmeans Execution Time: 101430
+MBKmeans Completed
+
+cc@cc-VirtualBox:~/Documents/hadoop-2.6.0$ hdfs dfs -cat /kmeans/centroids/*
+
+5.060377256762672 2.8971351485650443
+3.489690191682524 9.221799290521975
+9.712682115785057 7.936607820090822
+3.9472050672156564 5.107514316678432
+2.9057328859744636 0.48355568488620104
+9.809798190367703 2.045971551330438
+5.587273616132945 5.024595462614036
+5.034686164641285 9.91491536527331
+4.450638226601402 3.1816128407150233
+8.425493670702254 6.59532736738909
+8.858724125777444 5.4739173250414055
+4.151908487782382 2.223954260889597
+8.206778838110736 2.5201436583183834
+9.189624846686282 6.0186683479141445
+5.882752958901914 8.75515252262722
+3.238742969604187 8.190392737171974
+8.923426105714828 5.3797692951329275
+4.1494969586932475 8.879153702235493
+6.9664632131431725 6.966269776975434
+5.917378938640034 4.538145398817864
+
